@@ -80,7 +80,9 @@ content = load_content()
 # 🌟 PARTE PRINCIPAL (LO QUE VE ELLA)
 # -------------------------------------------------------------
 with st.container():
-    st.markdown('<div class="block">', unsafe_allow_html=True)
+    st.markdown("""
+<hr style='border: 0; height: 1px; background: linear-gradient(to right, #ffffff00, #fcb1d1, #ffffff00); margin: 30px 0;'/>
+""", unsafe_allow_html=True)
 
     # Canción
     if content.get("song"):
@@ -142,6 +144,6 @@ with st.expander("✏️ Editar contenido"):
             "photo_caption": photo_caption
         }
         save_content(new_content)
-        st.success("Guardado. Refresca la página para ver cambios.")
+        st.success("Guardado. Refresca la página para ver los cambios :)")
 
     st.markdown('</div>', unsafe_allow_html=True)

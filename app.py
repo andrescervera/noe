@@ -116,7 +116,10 @@ with st.container():
 # -------------------------------------------------------------
 # ✏️ PARTE OCULTA (EDICIÓN)
 # -------------------------------------------------------------
-st.markdown('<div class="divider-heart">♡</div>', unsafe_allow_html=True)
+with st.container():
+    st.markdown("""
+<hr style='border: 0; height: 1px; background: linear-gradient(to right, #ffffff00, #fcb1d1, #ffffff00); margin: 30px 0;'/>
+""", unsafe_allow_html=True)
 
 with st.expander("✏️ Editar contenido"):
     st.markdown('<div class="block">', unsafe_allow_html=True)

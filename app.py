@@ -70,15 +70,13 @@ st.markdown("""
 
 
 # ---- HEADER ----
-st.markdown('<div class="title">💛 Para Ti</div>', unsafe_allow_html=True)
-st.markdown('<div class="subtitle">Un pequeño rincón que actualizo pensando en ti.</div>', unsafe_allow_html=True)
+st.markdown('<div class="title">💛</div>', unsafe_allow_html=True)
 
 content = load_content()
 
 # -------------------------------------------------------------
 # 🌟 PRIMERA PARTE: EL CONTENIDO (LO QUE VE ELLA)
 # -------------------------------------------------------------
-st.markdown('<div class="divider-heart">⋆｡°✩💛✩°｡⋆</div>', unsafe_allow_html=True)
 
 with st.container():
     st.markdown('<div class="block">', unsafe_allow_html=True)
@@ -86,24 +84,23 @@ with st.container():
 
     # Canción
     if content.get("song"):
-        st.markdown("### 🎵 Canción del día")
+        st.markdown("### 🎵 Una canción")
         st.markdown(f"{content['song']}")
 
     # TikTok
     if content.get("tiktok"):
-        st.markdown("### 🎥 TikTok que me recordó a ti")
+        st.markdown("### 🎥 Un TikTok")
         st.markdown(f"{content['tiktok']}")
 
     # Mensaje
     if content.get("message"):
-        st.markdown("### 💬 Mensaje para ti")
+        st.markdown("### 💬 Un mensaje")
         st.markdown(f"{content['message']}")
         
             # Foto principal si existe
     if os.path.exists(IMAGE_FILE):
         st.markdown('<div class="polaroid">', unsafe_allow_html=True)
         st.image(IMAGE_FILE, use_column_width=True)
-        st.markdown('<div class="photo-caption">📸 Un recuerdo bonito</div>', unsafe_allow_html=True)
         st.markdown('</div>', unsafe_allow_html=True)
 
     st.markdown('</div>', unsafe_allow_html=True)
@@ -113,7 +110,7 @@ with st.container():
 # -------------------------------------------------------------
 st.markdown('<div class="divider-heart">♡</div>', unsafe_allow_html=True)
 
-with st.expander("✏️ Editar contenido (solo para nosotros dos)"):
+with st.expander("✏️ Editar contenido"):
     st.markdown('<div class="block">', unsafe_allow_html=True)
 
     # Campos de edición
@@ -126,7 +123,7 @@ with st.expander("✏️ Editar contenido (solo para nosotros dos)"):
     if uploaded_file is not None:
         with open(IMAGE_FILE, "wb") as f:
             f.write(uploaded_file.getbuffer())
-        st.success("Foto subida 💛")
+        st.success("Foto subida")
 
     # Guardar cambios
     if st.button("Guardar cambios"):
@@ -136,7 +133,7 @@ with st.expander("✏️ Editar contenido (solo para nosotros dos)"):
             "message": message
         }
         save_content(new_content)
-        st.success("Guardado 💛")
+        st.success("Guardado, refresca la página para ver los cambios.")
     
 
     st.markdown('</div>', unsafe_allow_html=True)

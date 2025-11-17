@@ -72,7 +72,7 @@ st.markdown("""
 
 
 # ---- HEADER ----
-st.markdown('<div class="title">Mi Boulevard 💛</div>', unsafe_allow_html=True)
+st.markdown('<div class="title">Boulevard de sueños rotos 💛</div>', unsafe_allow_html=True)
 
 content = load_content()
 

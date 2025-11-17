@@ -7,19 +7,19 @@ IMAGE_FILE = "shared_image.png"  # Foto subida
 
 def load_content():
     if not os.path.exists(DATA_FILE) or os.path.getsize(DATA_FILE) == 0:
-        return {"song": "", "tiktok": "", "message": ""}
+        return {"song": "", "tiktok": "", "message": "", "photo_caption": ""}
     try:
         with open(DATA_FILE, "r", encoding="utf-8") as f:
             return json.load(f)
     except json.JSONDecodeError:
-        return {"song": "", "tiktok": "", "message": ""}
+        return {"song": "", "tiktok": "", "message": "", "photo_caption": ""}
 
 def save_content(data):
     with open(DATA_FILE, "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=4)
 
 # ---- CONFIG ----
-st.set_page_config(page_title="💛", page_icon="Mi Boulevard", layout="centered")
+st.set_page_config(page_title="Mi Boulevard 💛", page_icon="Boulevard de sueños rotos💛", layout="centered")
 
 # ---- CSS ----
 st.markdown("""
@@ -43,14 +43,16 @@ st.markdown("""
         .photo-caption {
             color: #b78fa9;
             font-size: 14px;
-            margin-top: -10px;
+            margin-top: -8px;
+            text-align: center;
+            font-style: italic;
         }
         .title {
-            font-size: 40px;
+            font-size: 42px;
             font-weight: 700;
             color: #d088b5;
             text-align: center;
-            margin-bottom: 2px;
+            margin-bottom: 4px;
         }
         .subtitle {
             text-align: center;
@@ -70,17 +72,15 @@ st.markdown("""
 
 
 # ---- HEADER ----
-st.markdown('<div class="title">💛</div>', unsafe_allow_html=True)
+st.markdown('<div class="title">Mi Boulevard 💛</div>', unsafe_allow_html=True)
 
 content = load_content()
 
 # -------------------------------------------------------------
-# 🌟 PRIMERA PARTE: EL CONTENIDO (LO QUE VE ELLA)
+# 🌟 PARTE PRINCIPAL (LO QUE VE ELLA)
 # -------------------------------------------------------------
-
 with st.container():
     st.markdown('<div class="block">', unsafe_allow_html=True)
-
 
     # Canción
     if content.get("song"):
@@ -96,27 +96,35 @@ with st.container():
     if content.get("message"):
         st.markdown("### 💬 Un mensaje")
         st.markdown(f"{content['message']}")
-        
-            # Foto principal si existe
+
+    # Foto con caption
     if os.path.exists(IMAGE_FILE):
         st.markdown('<div class="polaroid">', unsafe_allow_html=True)
         st.image(IMAGE_FILE, use_column_width=True)
+
+        if content.get("photo_caption"):
+            st.markdown(f'<div class="photo-caption">{content["photo_caption"]}</div>',
+                        unsafe_allow_html=True)
+
         st.markdown('</div>', unsafe_allow_html=True)
 
     st.markdown('</div>', unsafe_allow_html=True)
 
+
 # -------------------------------------------------------------
-# 🌟 SEGUNDA PARTE: EDICIÓN (OCULTA EN UN ACORDEÓN)
+# ✏️ PARTE OCULTA (EDICIÓN)
 # -------------------------------------------------------------
 st.markdown('<div class="divider-heart">♡</div>', unsafe_allow_html=True)
 
 with st.expander("✏️ Editar contenido"):
     st.markdown('<div class="block">', unsafe_allow_html=True)
 
-    # Campos de edición
     song = st.text_input("🎵 Canción (link)", value=content.get("song", ""))
     tiktok = st.text_input("🎥 TikTok (link)", value=content.get("tiktok", ""))
     message = st.text_area("💬 Mensaje", value=content.get("message", ""))
+
+    # Pie de foto
+    photo_caption = st.text_input("📝 Pie de foto", value=content.get("photo_caption", ""))
 
     # Subir foto
     uploaded_file = st.file_uploader("📸 Subir foto", type=["png", "jpg", "jpeg"])
@@ -130,10 +138,10 @@ with st.expander("✏️ Editar contenido"):
         new_content = {
             "song": song,
             "tiktok": tiktok,
-            "message": message
+            "message": message,
+            "photo_caption": photo_caption
         }
         save_content(new_content)
-        st.success("Guardado, refresca la página para ver los cambios.")
-    
+        st.success("Guardado. Refresca la página para ver cambios.")
 
     st.markdown('</div>', unsafe_allow_html=True)

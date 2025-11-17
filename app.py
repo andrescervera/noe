@@ -137,6 +137,6 @@ with st.expander("✏️ Editar contenido (solo para nosotros dos)"):
         }
         save_content(new_content)
         st.success("Guardado 💛")
-        st.experimental_rerun()
+    
 
     st.markdown('</div>', unsafe_allow_html=True)

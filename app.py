@@ -19,7 +19,7 @@ def save_content(data):
         json.dump(data, f, ensure_ascii=False, indent=4)
 
 # ---- CONFIG ----
-st.set_page_config(page_title="Mi Boulevard 💛", page_icon="Boulevard de sueños rotos💛", layout="centered")
+st.set_page_config(page_title="Boulevard de sueños rotos 💛", page_icon="Boulevard de sueños rotos💛", layout="centered")
 
 # ---- CSS ----
 st.markdown("""

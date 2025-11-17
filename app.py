@@ -19,7 +19,7 @@ def save_content(data):
         json.dump(data, f, ensure_ascii=False, indent=4)
 
 # ---- CONFIG ----
-st.set_page_config(page_title="Para Ti 💛", page_icon="💛", layout="centered")
+st.set_page_config(page_title="💛", page_icon="Mi Boulevard", layout="centered")
 
 # ---- CSS ----
 st.markdown("""
